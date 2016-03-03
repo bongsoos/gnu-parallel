@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# run program locally
+#
+# usage
+# -----
+#   $ ./run-program [PLANNER-FILE]
+#
+# Dependencies
+# ------------
+# get-servers
+# program
+# planner-server
+# planner-run
+#
+# Instructions
+# ------------
+#   - put options in the `program` file
+#   - select initials in the `planner-run` file
+#   - if no need to select runs generated from the 'planner-run' file, run the default mode `./run-program`
+#   - if runs are selected and want to run a specific file, run the program passing the input file as an argument `./run-program PLANNER-FILE`
+#
+# updated: 12-15-15 
+#
+# (C) bongsoos 2015
+
+echo "Running on local machine: "
+
+if [ $# -eq 0 ]; then
+    # No planner input file is given, run the default planner-run,
+    # which will find all the combination of runs, saving it to default file
+    # and run parallel with the default file.
+    ./planner-run tempfile
+    parallel -a tempfile ./program
+    rm -f tempfile
+
+else
+    # If planner input file is given, run the parallel with given file.
+    parallel -a $1 ./program
+fi
+
