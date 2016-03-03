@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#SERVER1="corn03.stanford.edu" 
+#SERVER2="corn04.stanford.edu"
+#SERVER3="corn05.stanford.edu"
+
+#FILENAME="server-loads1.out"
+#SERVERS_=$(cat $FILENAME | awk '{print $1}')
+#
+#function join {
+#    local IFS="$1"
+#    shift
+#    echo "$*"
+#}
+#SERVERS=$(join , ${SERVERS_[@]})
+
+SERVERS=$(./planner-server "server-loads1.out")
+./planner-run tempfile
+#parallel --workdir . -S $SERVER1,$SERVER2 -a tempfile ./program
+parallel --workdir . -S $SERVERS -a tempfile ./program
+rm -f tempfile
+#cat tempfile | parallel --controlmaster -S $SERVER1,$SERVER2 echo
+

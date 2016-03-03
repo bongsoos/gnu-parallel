@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+FILENAME=$1
+#FILENAME="server-loads1.out"
+
+SERVERS_=$(cat $FILENAME | awk '{print $1}')
+index=1
+for s in $SERVERS_; do
+    #echo $index $s
+    SERVERS[$index]=$s
+    index=$((index+1))
+done
+
+function join {
+    local IFS="$1"
+    shift
+    echo "$*"
+}
+
+join , ${SERVERS[@]}
+

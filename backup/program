@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# run fitmodel.py 
+# model optimization given options
+# Options
+# -------
+#    cell_num
+#    model
+#    objective
+#    pathway 
+#    init_num_LNK
+#    init_num_S
+#    num_optims
+#    crossval
+#    is_grad
+#
+# (C) bongsoos 2015
+#
+# run using python3, module fitmodel.py, env variables $cell_num $model $objective
+#
+# ex) $ ./fitmodel.py g9 LNK LNK 2 g9 g9 2 True False & 
+#
+# ./fitmodel.py $cell_num $model $objective $pathway $init_num_LNK $init_num_S $num_optims $crossval $is_grad &
+#
+# cell_num: g4 g6 g8 g9 g9apb g11 g12 g13 g15 g17 g17apb g19 g19apb g20 g20apb
+
+model=Spiking
+objective=Spiking
+num_optims=1
+pathway=1
+crossval=True
+is_grad=True
+
+function start_fit {
+# start_fit $cell_num $init_num_LNK $init_num_S
+    nohup ./fitmodel.py  $1 $model $objective $pathway $2 $3 $num_optims $crossval $is_grad > $cell_num.$3.out
+}
+
+#cd test_gnu_parallel
+hostname
+#echo $PWD
+#echo $1 $2 $3
+start_fit $1 $2 $3
