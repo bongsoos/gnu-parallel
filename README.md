@@ -1,8 +1,9 @@
 # gnu-parallel
 Run multi-optimization(or multi-task) processes using parallel implementation.
-This was initially developed for <a href="http://www.sciencedirect.com/science/article/pii/S0896627312000797" target="_blank">LNKS</a> project.
+This was initially developed for <a href="https://github.com/baccuslab/LNKS" target="_blank">LNKS</a> project.
 But still, the files can be easily modified for solving similar problems.
 
+# Instructions
 First, modify the variables in the program file.
 Then, run `planner-run` file to generate multiple initial conditions
 
