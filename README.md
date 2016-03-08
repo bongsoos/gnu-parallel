@@ -4,7 +4,7 @@ This was initially developed for <a href="https://github.com/baccuslab/LNKS" tar
 But still, the files can be easily modified for solving similar problems.
 
 # Instructions
-First, modify the variables in the program file.
+First, modify the variables in the `program` file.
 Then, run `planner-run` file to generate multiple initial conditions
 
     $ INFILE=tempfile
