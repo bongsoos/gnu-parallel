@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#
+# usage
+# -----
+#   $ ./run [options] 
+# options
+# -------
+# -f: filename (def: $FILENAME)
+# -x: prefix (def: $PREFIX)
+# 
+# The default FILENAME is 'tempfile' and the default PREFIX is 'run_files_'
+#
+
+
+N=5
+FILENAME='tempfile'
+PREFIX='run_files_'
+
+# parse the options
+while getopts 'f:x:' opt; do
+    case $opt in
+        f) FILENAME=$OPTARG ;;
+        x) PREFIX=$OPTARG ;;
+    esac
+done
+
+split -l $N $FILENAME $PREFIX
+
+# ./run-program-local tempfile1
+# ./run-program-local tempfile2
+
+RUNFILES=$(ls | grep $PREFIX)
+for file in $RUNFILES; do
+    echo $file
+    ./run-program-local2 $file
+done
